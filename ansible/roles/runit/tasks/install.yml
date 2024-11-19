@@ -11,7 +11,7 @@
   file: path={{ runit_runsvdir_dir }} mode=0755 state=directory
 
 - name: Check if {{ runit_startup_file }} exists
-  stat: path={{ runit_startup_file }} get_md5=no get_checksum=no
+  stat: path={{ runit_startup_file }} get_checksum=no
   register: file
 
 - name: Create startup script at {{ runit_startup_file }}
@@ -33,4 +33,4 @@
   shell: sed -i -e '$i {{ runit_startup_file }} &\n' /etc/rc.local
   args:
       warn: false
-  when: check.rc != 0
+  when: check is defined and check.rc is defined and check.rc != 0

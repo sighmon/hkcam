@@ -1,8 +1,8 @@
 ---
-- include: install.yml
+- include_tasks: install.yml
   tags: [install]
 
-- include: configure.yml
+- include_tasks: configure.yml
   tags: [configure]
 
 - import_role:
